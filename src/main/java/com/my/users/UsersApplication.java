@@ -17,7 +17,7 @@ public class UsersApplication implements ApplicationRunner {
 	}
 
 	@Override
-	public void run(ApplicationArguments args) throws Exception {
-		System.out.println(userRepository.findAll());
+	public void run(ApplicationArguments args) {
+		System.out.println(userRepository.findByLastNameContainingIgnoreCase("last"));
 	}
 }

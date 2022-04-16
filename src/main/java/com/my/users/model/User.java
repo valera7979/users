@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import lombok.ToString;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -28,7 +28,8 @@ import static javax.persistence.FetchType.EAGER;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class User extends AbstractPersistable<Integer> {
+@ToString(callSuper = true, exclude = {"password"})
+public class User extends BaseEntity {
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotEmpty
