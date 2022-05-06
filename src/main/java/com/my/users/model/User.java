@@ -1,5 +1,7 @@
 package com.my.users.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +20,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Set;
 
 import static javax.persistence.FetchType.EAGER;
@@ -29,7 +32,7 @@ import static javax.persistence.FetchType.EAGER;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString(callSuper = true, exclude = {"password"})
-public class User extends BaseEntity {
+public class User extends BaseEntity  implements Serializable {
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotEmpty
@@ -46,6 +49,7 @@ public class User extends BaseEntity {
 
     @Column(name = "password")
     @Size(max = 256)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Enumerated(EnumType.STRING)
