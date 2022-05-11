@@ -9,15 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @AllArgsConstructor
-public class UsersApplication implements ApplicationRunner {
+public class UsersApplication {
 	private final UserRepository userRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(UsersApplication.class, args);
-	}
-
-	@Override
-	public void run(ApplicationArguments args) {
-		System.out.println(userRepository.findByLastNameContainingIgnoreCase("last"));
 	}
 }
