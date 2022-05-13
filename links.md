@@ -23,3 +23,7 @@
 * [Spring Security key services](https://ru.wikibooks.org/wiki/Spring_Security/%D0%9A%D0%BB%D1%8E%D1%87%D0%B5%D0%B2%D1%8B%D0%B5_%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B_Spring_Security)
 * [Java Based Configuration](https://www.tutorialspoint.com/spring/spring_java_based_configuration.htm)
 
+*** 
+* [Security Form Login](https://www.baeldung.com/spring-security-login)
+* [Spring Security Expressions](https://www.baeldung.com/spring-security-expressions)
+* [Role and GrantedAuthority]()
