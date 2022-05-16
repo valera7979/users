@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -26,6 +27,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    public static final PasswordEncoder PASSWORD_ENCODER = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     private final UserRepository userRepository;
 
     @Bean
@@ -44,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 () -> new UsernameNotFoundException("User '" + email + "' was not found")));
         }
         )
-            .passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
+            .passwordEncoder(PASSWORD_ENCODER);
     }
 
     @Override
@@ -53,6 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/account").hasRole(Role.USER.name())
             .antMatchers("/api/**").hasRole(Role.ADMIN.name())
             .antMatchers("/*").fullyAuthenticated()
-            .and().formLogin();
+            .and().httpBasic()
+            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and().csrf().disable();
     }
 }

@@ -26,4 +26,29 @@
 *** 
 * [Security Form Login](https://www.baeldung.com/spring-security-login)
 * [Spring Security Expressions](https://www.baeldung.com/spring-security-expressions)
-* [Role and GrantedAuthority]()
+* [Role and GrantedAuthority](https://stackoverflow.com/a/19542316/548473)
+
+***
+* [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)
+* [Decode and Encode Base64](https://decodebase64.com/)
+* [Написание HTTP-запросов с помощью Curl (для Windows можно использовать Git Bash)](http://rus-linux.net/lib.php?name=/MyLDP/internet/curlrus.html)
+* [Password encoding with Spring Data REST](https://stackoverflow.com/questions/30260582/548473)
+* [Access.WRITE_ONLY](https://stackoverflow.com/a/12505165/548473)
+
+
+* GET http://localhost:8080/api/account
+* GET http://localhost:8080/api/users
+* curl -s http://localhost:8080/api/account --user user@gmail.com:password
+```POST http://localhost:8080/api/users
+Content-Type: application/json
+Authorization: Basic admin@gmail.com admin
+
+{
+"email": "test@test.com",
+"firstName": "Test",
+"lastName": "Test",
+"password": "test",
+"roles": [ "USER","ADMIN"]
+}
+```
+
