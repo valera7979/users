@@ -16,7 +16,8 @@ spring:
   datasource:
     # ImMemory
     url: jdbc:h2:mem:users
-    #    tcp: jdbc:h2:tcp://localhost:9092/mem:voting
+    #    Uses this to connect in IDEA
+    #    tcp: jdbc:h2:tcp://localhost:9092/mem:users
     # Absolute path
     #    url: jdbc:h2:C:/projects/bootjava/restaurant-voting/db/voting
     #    tcp: jdbc:h2:tcp://localhost:9092/C:/projects/bootjava/restaurant-voting/db/voting

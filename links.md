@@ -52,3 +52,40 @@ Authorization: Basic admin@gmail.com admin
 }
 ```
 
+### REST. AccountController
+
+* [Understanding REST](http://spring-projects.ru/understanding/rest/)
+* [10 Best Practices for Better RESTful API](https://medium.com/@mwaysolutions/10-best-practices-for-better-restful-api-cbe81b06f291)
+* [15 тривиальных фактов о правильной работе с протоколом HTTP](https://habr.com/ru/company/yandex/blog/265569/)
+
+```aidl
+PUT http://localhost:8080/api/account
+Content-Type: application/json
+Authorization: Basic user@gmail.com pass
+
+{
+  "email": "user@gmail.com",
+  "firstName": "New_First",
+  "lastName": "New_Last"
+}
+###
+
+GET http://localhost:8080/api/account
+Authorization: Basic user@gmail.com pass
+###
+
+POST http://localhost:8080/api/account/register
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "firstName": "Test",
+  "lastName": "Test",
+  "password": "test"
+}
+###
+
+GET http://localhost:8080/api/account
+Authorization: Basic test@test.com test
+```
+
