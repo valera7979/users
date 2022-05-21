@@ -2,7 +2,6 @@ package com.my.users;
 
 import com.my.users.service.MyService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,10 +14,11 @@ public class UsersApplication implements ApplicationRunner {
 		SpringApplication.run(UsersApplication.class, args);
 	}
 
-	@Autowired
-	private MyService myService;
+	private final MyService myService;
+
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		// See https://habr.com/ru/post/347752/
 		myService.method1();
 	}
 }
