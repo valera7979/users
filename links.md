@@ -1,8 +1,8 @@
 # Spring boot app
 
-### References
+## References
 
-### Security
+## Security
 * [Official Gradle documentation](https://docs.gradle.org)
 * [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.6.1/gradle-plugin/reference/html/)
 * [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.6.1/gradle-plugin/reference/html/#build-image)
@@ -52,7 +52,7 @@ Authorization: Basic admin@gmail.com admin
 }
 ```
 
-### REST. AccountController
+## REST. AccountController
 
 * [Understanding REST](http://spring-projects.ru/understanding/rest/)
 * [10 Best Practices for Better RESTful API](https://medium.com/@mwaysolutions/10-best-practices-for-better-restful-api-cbe81b06f291)
@@ -88,4 +88,6 @@ Content-Type: application/json
 GET http://localhost:8080/api/account
 Authorization: Basic test@test.com test
 ```
+
+### Error handling
 
