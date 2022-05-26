@@ -5,6 +5,7 @@ import com.my.users.model.Role;
 import com.my.users.model.User;
 import com.my.users.repository.UserRepository;
 import com.my.users.util.ValidationUtil;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -49,6 +50,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 @RequestMapping("/api/account")
 @AllArgsConstructor
 @Slf4j
+@Tag(name = "Account Controller")
 public class AccountController implements RepresentationModelProcessor<RepositoryLinksResource> {
     @SuppressWarnings("unchecked")
     private static final RepresentationModelAssemblerSupport<User, EntityModel<User>> ASSEMBLER =
