@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<User, Integer> {
@@ -17,5 +19,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByEmailIgnoreCase(String email);
 
     @RestResource(rel = "by-lastname", path = "by-lastname")
-    List<User> findByLastNameContainingIgnoreCase(String lastName);
+    Page<User> findByLastNameContainingIgnoreCase(String lastName, Pageable page);
 }
