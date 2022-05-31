@@ -2,7 +2,9 @@ package com.my.users.util;
 
 import com.my.users.exception.IllegalRequestDataException;
 import com.my.users.model.BaseEntity;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class ValidationUtil {
 
     public static void checkNew(BaseEntity entity) {

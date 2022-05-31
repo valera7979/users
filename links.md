@@ -58,7 +58,7 @@ Authorization: Basic admin@gmail.com admin
 * [10 Best Practices for Better RESTful API](https://medium.com/@mwaysolutions/10-best-practices-for-better-restful-api-cbe81b06f291)
 * [15 тривиальных фактов о правильной работе с протоколом HTTP](https://habr.com/ru/company/yandex/blog/265569/)
 
-```aidl
+```
 PUT http://localhost:8080/api/account
 Content-Type: application/json
 Authorization: Basic user@gmail.com pass
@@ -91,3 +91,10 @@ Authorization: Basic test@test.com test
 
 ### Error handling
 
+
+### Open API, Swagger
+
+```aidl
+http://localhost:8080/swagger-ui.html
+http://localhost:8080/v3/api-docs
+```
