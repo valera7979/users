@@ -18,15 +18,17 @@ repositories {
 	mavenCentral()
 }
 
+def openApiVersion = '1.6.8'
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 //	implementation 'org.springframework.data:spring-data-rest-hal-explorer'
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
-	implementation 'org.springdoc:springdoc-openapi-data-rest:1.6.8'
-	implementation 'org.springdoc:springdoc-openapi-security:1.6.8'
+	implementation "org.springdoc:springdoc-openapi-ui:$openApiVersion"
+	implementation "org.springdoc:springdoc-openapi-data-rest:$openApiVersion"
+	implementation "org.springdoc:springdoc-openapi-security:$openApiVersion"
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -34,6 +36,8 @@ dependencies {
 	compileOnly 'com.h2database:h2'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'com.h2database:h2'
 }
 
 test {

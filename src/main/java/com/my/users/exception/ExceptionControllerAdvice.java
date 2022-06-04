@@ -34,24 +34,11 @@ public class ExceptionControllerAdvice extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(status).body(body);
     }
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public VndErrors.VndError handleMethodArgumentNotValid(ResourceNotFoundException ex) {
-        String correlationId = generateId();
-        log.error("logref: {}", correlationId, ex);
-
-        return new VndErrors.VndError(correlationId, ex.getMessage());
-    }
-
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(
-        Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request)
+    {
         log.error("Exception", ex);
         return super.handleExceptionInternal(ex, body, headers, status, request);
     }
-
-    private String generateId() {
-        return UUID.randomUUID().toString().replaceAll("-", "");
-    }
 }
-
