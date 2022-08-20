@@ -94,7 +94,7 @@ Authorization: Basic test@test.com test
 
 ### Open API, Swagger
 
-```aidl
+```
 http://localhost:8080/swagger-ui.html
 http://localhost:8080/v3/api-docs
 ```
