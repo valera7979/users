@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+
+  user_app:
+    build: ../
+    networks:
+      - user-app_net
+    ports:
+      - "15108:15108"
+    deploy:
+      mode: global
+      resources:
+        limits:
+          cpus: "2"
+          memory: "8G"
+        reservations:
+          cpus: "2"
+          memory: "8G"
+    depends_on:
+      - db
+    environment:
+      EXTERNAL_IP: user_app
+      spring.profiles.active: 'basic-login'
+      JAVA_OPTS: >
+          -Xms4G
+          -Xmx4G
+          -XX:MaxDirectMemorySize=2G
+          -XX:+UseParallelGC
+          -XX:+UseLargePages
+          -XX:+ExitOnOutOfMemoryError 
+          -Xdebug 
+          -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:1133  
+          -Duserapp.jdbc.url=jdbc:postgresql://postgres:5432/admin 
+          -Duserapp.jdbc.username=admin
+          -Duserapp.jdbc.password=admin 
+
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=yourpassword
+      - MYSQL_DATABASE=yourdatabase
+      - MYSQL_USER=youruser
+      - MYSQL_PASSWORD=yourpassword
+
+networks:
+  user-app_net:
+    driver: bridge
