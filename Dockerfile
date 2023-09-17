@@ -13,5 +13,7 @@ COPY src/main/resources/application.yaml application.yaml
 COPY src/main/resources/data.sql data.sql
 
 # Set the entrypoint command to run the Spring Boot application
+#ENTRYPOINT ["java","-jar","/app/app.jar"]
+#docker run -p 9001:9001 users-app
 ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/app.jar ${0} ${@}"]
 #docker run -p 9001:9001 users-app --server.port=9001

@@ -37,7 +37,7 @@ spring:
     returnBodyOnCreate: true
 
 server:
-  port: 51100
+  port: 8080
 
   #  https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#security-properties
 #  security:
