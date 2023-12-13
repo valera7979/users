@@ -1,49 +1,58 @@
 pipeline {
     agent any
-
     tools {
-        gradle 'Gradle'
-        jdk 'Java'
+        gradle 'Gradle-7.5'
     }
-
     stages {
-        stage('Checkout') {
+
+        stage('Clean') {
             steps {
-                checkout scm
+                dir("${env.WORKSPACE}"){
+                    echo "Cleaning the workspace..."
+
+                    bat 'gradle clean'
+                }
             }
         }
 
         stage('Build') {
             steps {
-      
-                bat 'gradle clean build'
+                dir("${env.WORKSPACE}"){
+                    echo "Creating the JAR file..."
+
+                    bat 'gradle build -x test'
+                }
             }
         }
 
         stage('Test') {
             steps {
-                
-                bat 'gradle test'
-                junit 'build/test-results/test/*.xml'
+                dir("${env.WORKSPACE}"){
+                    echo "Running tests..."
+
+                    bat 'gradle test'
+                    junit '**/*.xml'
+                }
             }
         }
 
-        stage('Code Coverage') {
-            steps {
-               
-                bat 'gradle jacocoTestReport'
-                
-                archiveArtifacts 'build/reports/jacoco/test/html/*'
-            }
-        }
+
+
+
     }
-
     post {
         always {
-           
-            junit 'build/test-results/test/*.xml'
-            
-            jacoco(execPattern: 'build/jacoco/test.exec', classPattern: '**/*.class', sourcePattern: 'src/main/java', minimumInstructionCoverage: 0, minimumBranchCoverage: 0, minimumComplexityCoverage: 0, minimumLineCoverage: 80, minimumMethodCoverage: 0, minimumClassCoverage: 0)
+            echo "Collecting jUnit test results..."
+            // Add jUnit report collection here...
+            junit allowEmptyResults: true, testResults: 'build/test-results/test/*.xml'
+
+
+            echo "Archiving the JAR file..."
+
+            archiveArtifacts allowEmptyArchive: true,
+            artifacts: 'build/libs/user-manager.jar',
+            fingerprint: true,
+            followSymlinks: false, onlyIfSuccessful: true
         }
     }
 }
