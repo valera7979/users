@@ -1,15 +1,15 @@
 name: users CI
 on:
   push:
-    branches: [ master ]
+    branches: [ master,ci ]
   pull_request:
     branches: [ master,develop ]
 jobs:
   build:
     strategy:
       matrix:
-        java-version: 17
-        distribution: adopt
+        java-version: '17'
+        distribution: 'adopt'
         os: ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
