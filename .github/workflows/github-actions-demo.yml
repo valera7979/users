@@ -1,23 +1,36 @@
 name: users CI
-on: [push]
+on:
+  push:
+    branches: [ master,ci ]
+  pull_request:
+    branches: [ master,develop ]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [17]
+        distribution: [adopt]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 17
+      - name: 🏗️ Set up JDK ${{ matrix.java-version }} 🏗️
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'adopt'
-      - name: Validate Gradle wrapper
+          java-version: ${{ matrix.java-version }}
+          distribution: ${{ matrix.distribution }}
+      - name: 🛰️ Validate Gradle wrapper 🛰️
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-      - name: Build with Gradle
+      - name: 🚑🚒🚓 Run chmod to make gradlew executable
+        run: chmod +x ./gradlew
+      - name: 🏠 Build with Gradle 🏠
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: build
-      - name: artifact
+      - name: 🏛️ Artifact 🏛️
         uses: actions/upload-artifact@v3
+        if: github.ref == 'refs/heads/master'
         with:
           name: Package
           path: build/libs
+
