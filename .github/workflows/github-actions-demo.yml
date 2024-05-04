@@ -8,9 +8,9 @@ jobs:
   build:
     strategy:
       matrix:
-        java-version: '17'
-        distribution: 'adopt'
-        os: ubuntu-latest
+        java-version: [17]
+        distribution: [adopt]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
