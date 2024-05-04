@@ -27,6 +27,7 @@ jobs:
           arguments: build
       - name: 🏛️ Artifact 🏛️
         uses: actions/upload-artifact@v3
+        if: github.ref == 'refs/heads/master'
         with:
           name: Package
           path: build/libs
